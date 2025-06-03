@@ -8,5 +8,5 @@ RUN npm run build
 
 # Etapa de producción
 FROM nginx:1.25-alpine
-COPY --from=builder /app/dist/trabajofinal/ /usr/share/nginx/html/
+COPY --from=builder /app/dist/trabajo-final/ /usr/share/nginx/html/
 EXPOSE 80
