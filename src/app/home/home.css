@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.img {
+  max-width: 500px;
+}
+
+.button {
+  width: fit-content;
+  margin-top: 20px;
+  background-color: aliceblue;
+  border: 1px solid #9b9b9b;
+  border-radius: 4px;
+  padding: 12px 24px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #d1f0ee;
+  color: #004d40;
+  cursor: pointer;
+}

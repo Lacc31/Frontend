@@ -7,6 +7,12 @@
   color: #333;
 }
 
+.main-container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -18,8 +24,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 90px;
+  padding: 0 48px;
   background-color: #b2dfdb;
-  padding: 20px 40px;
   border-bottom: 2px solid #80cbc4;
 }
 
@@ -41,11 +48,12 @@ header {
 }
 
 .nav-links a:hover {
-  background-color: #b2dfdb;
-  color: #00695c;
+  background-color: #84b9b5;
+  color: white;
 }
 
 main {
+  flex: 1;
   padding: 40px 50px;
 }
 
@@ -55,6 +63,5 @@ footer {
   padding: 15px;
   color: #004d40;
   font-size: 14px;
-  margin-top: 40px;
   border-top: 2px solid #80cbc4;
 }

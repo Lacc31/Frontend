@@ -9,7 +9,7 @@ import {Component} from '@angular/core';
 
 export const routes: Routes = [
   {path:'',component: Home},
-  {path:'about', component: About},
+  {path:'nosotros', component: About},
   {path:'curso', component: Curso},
   {path:'registro',component:Registro},
   {path:'**',component:Home}
