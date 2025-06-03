@@ -1,4 +1,4 @@
-# Node.js 20
+# Etapa de construcción
 FROM node:20-alpine AS builder
 
 # Define directorio de trabajo
@@ -8,28 +8,25 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala dependencias
-RUN npm install
+RUN npm ci --only=production
 
 # Copia código fuente
 COPY . .
 
 # Compila la aplicación para producción
-RUN npm run build -- --configuration=production
+RUN npm run build --prod
 
-# Nueva etapa con imagen limpia
-FROM node:20-alpine
+# Etapa de producción
+FROM nginx:1.25-alpine
 
-# Define directorio de trabajo
-WORKDIR /app
+# Copia archivos compilados de Angular
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
-# Copia solo los archivos compilados de la etapa anterior
-COPY --from=builder /app/dist/trabajofinal ./dist
+# Copia configuración personalizada de nginx
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Instala servidor ligero
-RUN npm install -g serve
+# Expone puerto 80
+EXPOSE 80
 
-# Define puerto a exponer
-EXPOSE 4200
-
-# Comando para iniciar el servidor
-CMD ["serve", "-s", "dist", "-l", "4200"]
+# Comando por defecto
+CMD ["nginx", "-g", "daemon off;"]
