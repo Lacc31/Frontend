@@ -5,7 +5,9 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Etapa de producción - Solo servir archivos estáticos
-FROM nginx:1.25-alpine
-COPY --from=builder /app/dist/ /usr/share/nginx/html/
-EXPOSE 80
+# Solo generar archivos, no servir
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/dist/ /app/dist/
+VOLUME ["/app/dist"]
+CMD ["sh", "-c", "cp -r /app/dist/* /shared/ && tail -f /dev/null"]
