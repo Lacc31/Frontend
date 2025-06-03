@@ -5,9 +5,8 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Solo generar archivos, no servir
 FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/dist/ /app/dist/
-VOLUME ["/app/dist"]
+VOLUME ["/shared"]
 CMD ["sh", "-c", "cp -r /app/dist/* /shared/ && tail -f /dev/null"]
